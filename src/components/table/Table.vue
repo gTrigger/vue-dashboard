@@ -62,14 +62,82 @@
             toggle: function (container) {
                 container.classList.toggle("hidden");
             },
-            modalFabric: function(type) {
+            modalFabric: function (type) {
                 switch (type) {
                     case 'row':
-                        makeModal('row', deleteRow);
+                        this.makeModal('row', this.deleteRow);
                         break;
                     default:
-                        makeModal('table', deleteEntireTable);
+                        this.makeModal('table', this.deleteEntireTable);
                 }
+            },
+            makeModal: function (text, func) {
+                document.getElementById('confirmModal').innerHTML =
+                    "<div class=\"alert-box modal-open fade show\">" +
+                    "<h1 class=\"modal-header\">Attention!</h1>" +
+                    "<div class=\"modal-body\">" +
+                    "<p class=\"alert-box-text\">Are you sure you want to delete the whole " + text + "?</p>" +
+                    "</div>" +
+                    "<div class=\"modal-footer\">" +
+                    "</div>" +
+                    "</div>";
+                document.getElementById('confirmModal').querySelector('.modal-footer').appendChild(this.createButtonControl('No', this.toggle, document.getElementById('confirmModal')));
+                document.getElementById('confirmModal').querySelector('.modal-footer').appendChild(this.createButtonControl('Ok', func));
+
+                this.toggle(document.getElementById('confirmModal'));
+            },
+            createButtonControl: function(label, cb, options) {
+                if (label) {
+                    const el = document.createElement('button');
+                    el.classList.add('btn');
+                    el.innerText = label;
+                    el.onclick = () => {
+                        return cb.call(null, options)
+                    };
+                    return el;
+                }
+            },
+            deleteRow: function() {
+                let storedActions = JSON.parse(localStorage.getItem("newRowData"));
+                let filteredActions = storedActions.filter(function (storedActions) {
+                    return +storedActions.id !== +rowID;
+                });
+                localStorage.setItem('newRowData', JSON.stringify(filteredActions));
+                this.clearTable();
+                let returnArr = arr = JSON.parse(localStorage.getItem("newRowData")) || [];
+                for (let i = 0; i < returnArr.length; i++) {
+                    this.fillTableWithRows(
+                        returnArr[i].date,
+                        returnArr[i].name,
+                        returnArr[i].projectID,
+                        returnArr[i].client,
+                        returnArr[i].comment,
+                        returnArr[i].id)
+                }
+                this.toggle(containerConfirmAlertBox);
+            },
+            deleteEntireTable: function() {
+                this.clearTable();
+                localStorage.removeItem('newRowData');
+                arr = [];
+                this.toggle(containerConfirmAlertBox);
+            },
+            clearTable: function() {
+                let tBody = tableData.getElementsByTagName('tbody')[0];
+                while (tBody.childNodes.length > 2) {
+                    tBody.removeChild(tBody.firstChild);
+                }
+            },
+            fillTableWithRows: function(date, name, projectID, client, comment, id) {
+                let newRow = tableData.insertRow(1);
+                newRow.innerHTML =
+                    "<td>" + date + "</td>" +
+                    "<td>" + name + "</td>" +
+                    "<td>" + projectID + "</td>" +
+                    "<td>" + client + "</td>" +
+                    "<td>" + comment + "</td>" +
+                    "<td><i class=\"fa fa-trash-o row-trash-btn\" onclick='returnRowToDeleteID()'></i></td>";
+                newRow.setAttribute("id", id);
             }
         }
     };

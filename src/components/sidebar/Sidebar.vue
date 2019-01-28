@@ -1,13 +1,13 @@
 <!--suppress ALL -->
 <template>
-    <section class="sidebar">
+    <section class="sidebar" id="sidebar">
         <div class="container-menu grid-item" id="menu">
             <img src="https://www.logogarden.com/wp-content/uploads/lg-logo-samples/Decor-Furniture-Logo-8.png"
                  alt="Logo" class="logo">
             <div class="container-widget">
-                <font-awesome-icon class="show-profile-btn" icon="user" @click="toggle(document.getElementById('descr'))"/>
-                <font-awesome-icon class="show-profile-btn" icon="chart-bar" @click="toggle(document.getElementById('graph'))"/>
-                <font-awesome-icon class="show-profile-btn" icon="table" @click="toggleTable"/>
+                <font-awesome-icon class="show-profile-btn" icon="user" @click="clickedOnMe"/>
+                <font-awesome-icon class="show-profile-btn" icon="chart-bar" @click="clickedOnMe"/>
+                <font-awesome-icon class="show-profile-btn" icon="table" @click="clickedOnMe"/>
             </div>
             <ul class="menu">
                 <li v-for="btn in btns" class="menu-item-label">
@@ -19,7 +19,11 @@
     </section>
 </template>
 <script>
-
+    const WIDGETS = [
+        {name: 'user', icon: 'user', onClickAction: '@click="toggle(document.getElementById(\'descr\'))'},
+        {name: 'graph', icon: 'chart-bar', onClickAction: '@click="toggle(document.getElementById(\'graph\')'},
+        {name: 'table', icon: 'table', onClickAction: '@click="toggleTable"'}
+    ];
     const MENU_LINKS = [
         {name: 'home', displayName: 'HOME', iconName: 'home'},
         {name: 'profile', displayName: 'PROFILE', iconName: 'user'},
@@ -46,10 +50,17 @@
             toggleTable: function () {
                 document.getElementById('table').classList.toggle("hidden");
                 document.getElementById('welcome-cat').hidden = !document.getElementById('welcome-cat').hidden;
+            },
+            clickedOnMe: function () {
+                this.$emit('clickedOnMe', this.$el.id);
+            },
+            alertAfterBeingClicked: function () {
+                console.log("Omg, you clicked on " + id + "! Why oh why!")
             }
         }
     };
 
 </script>
-<style src="./sidebar.scss" scoped lang="scss"></style>
+<style src="./sidebar.scss" scoped lang="scss">
+</style>
 
