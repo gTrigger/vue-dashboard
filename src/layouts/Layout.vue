@@ -9,16 +9,16 @@
         <img src="https://cdn170.picsart.com/upscale-246067230013212.png?r1024x1024" width="400px">
       </div>
       <div class="wrapper">
-        <div class="container-menu grid-item" id="menu">
-            <app-sidebar/>
+        <div class="container-menu" id="menu">
+            <app-sidebar v-on:widget-btn-click="toggleWidgetVisibility"/>
         </div>
-        <div class="container-descr grid-item" id="descr" v-if="isDescriptionVisible" v-on:clickedonme="this.$data.isTableVisible=!this.$data.isTableVisible">
+        <div class="container-descr" id="descr" v-if="isDescriptionVisible">
             <app-description/>
         </div>
-        <div class="container-graph grid-item" id="graph" v-if="isGraphVisible">
+        <div class="container-graph" id="graph" v-if="isGraphVisible">
             <app-graph/>
         </div>
-        <div class="container-table grid-item" id="table" v-if="isTableVisible">
+        <div class="container-table" id="table" v-if="isTableVisible">
             <app-table/>
         </div>
       </div>
@@ -30,30 +30,41 @@
 import AppSidebar from '../components/sidebar/Sidebar.vue';
 import AppTable from '../components/table/Table.vue';
 import AppDescription from '../components/description/Description.vue';
-import AppGraph from "../components/graph/Graph.vue";
+import AppGraph from "../components/graph/Graph.vue"
 
 export default {
   name: 'Layout',
   data: function() {
-    return {
-      isTableVisible: true,
-      isGraphVisible: true,
-      isDescriptionVisible: true
-    };
+      return {
+          isTableVisible: true,
+          isGraphVisible: true,
+          isDescriptionVisible: true
+      };
   },
   methods: {
-      clickedOnChild: function(id) {
-          console.log("Omg, you clicked on my " + id + "! Why oh why!")
-      }
+      toggleWidgetVisibility: function(widgetBtnName) {
+          switch (widgetBtnName) {
+              case 'user':
+                  this.isDescriptionVisible = !this.isDescriptionVisible;
+                  break;
+              case 'graph':
+                  this.isGraphVisible = !this.isGraphVisible;
+                  break;
+              case 'table':
+                  this.isTableVisible = !this.isTableVisible;
+                  break;
+              default: console.log("There's no default widget");
+          }
+      },
+
   },
   mounted: function () {
-        this.$on('clicked-on-me', this.clickedOnChild)
   },
   components: {
       AppGraph,
       AppSidebar,
       AppTable,
-      AppDescription,
+      AppDescription
   },
   computed: {
       isCatVisible() {

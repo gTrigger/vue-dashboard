@@ -1,14 +1,66 @@
-h3 {
-    margin: 40px 0 0;
-}
-ul {
-    list-style-type: none;
+@charset "UTF-8";
+/*Сброс стилей*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del,
+dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup,
+tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label,
+legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside,
+canvas, details, embed, figure, figcaption, footer, header, hgroup, menu,
+nav, output, ruby, section, summary, time, mark, audio, video {
+    height: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
     padding: 0;
+    border: 0;
+    font-size: 100%;
+    outline: none;
+    box-sizing: border-box;
 }
-li {
-    display: inline-block;
-    margin: 0 10px;
+/*Общие стили*/
+#page-layout {
+    height: 100%;
+    color: #ffffff;
+    font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+    font-size: 22px;
+    background: linear-gradient(to top, #1db899 0%, #330867 100%) no-repeat fixed;
 }
-a {
-    color: #42b983;
+.wrapper {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+#welcome-cat {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 0;
+    height: 300px;
+    width: 400px;
+    align-self: end;
+}
+.container-menu {
+    height: 100%;
+    margin-right: 40px;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.container-descr {
+    margin: 35px 0 0 0;
+    width: 40%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.container-graph {
+    margin: 35px 40px 0 0;
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+.container-table {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    margin: 0 40px 30px 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 10px 20px rgba(0, 0, 0, 0.3);
 }

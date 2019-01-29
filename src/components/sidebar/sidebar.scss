@@ -1,14 +1,5 @@
-.container-menu {
-  height: 100%;
-  grid-area: a;
-  justify-items: start;
-  background: rgba(0, 0, 0, 0.4);
-  position: fixed;
-  top: 0;
-  width: 15%;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 10px 20px rgba(0, 0, 0, 0.3);
-}
-.container-menu li {
+.menu {
+  align-content: start;
   line-height: 1.5;
   list-style-type: none;
   padding-left: 20px;
@@ -16,28 +7,9 @@
 .logo {
   filter: invert(100%);
   opacity: 10%;
-  width: 100%;
-  height: auto;
 }
 .container-widget {
-  padding: 20px;
-}
-.container-widget .fa {
-  padding: 10px;
-  font-size: 35px;
-}
-.container-widget button {
-  background: rgba(0, 0, 0, 0);
-  color: white;
-  display: inline-block;
-  margin: 2px;
-  width: 70px;
-  height: 65px;
-  border: 2px solid white;
-  border-radius: 12px;
-  outline: 0;
-}
-.container-widget button:active {
-  color: #b8c0f1;
-  border: 2px solid #b8c0f1;
+  padding: 15px;
+  display: flex;
+  justify-content: space-around;
 }

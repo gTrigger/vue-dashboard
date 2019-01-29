@@ -1,14 +1,23 @@
 <template>
-
+    <div class="container-confirm-alert-box hidden" id="confirmModal" role="dialog">
+    </div>
 </template>
 
 <script>
     export default {
-        name: 'app',
+        name: 'confirmModal',
         components: {
-            confirmModal
+        },
+        data () {
+            return {
+            }
+        },
+        methods: {
+
+        },
+        computed: {
         }
-    }
+    };
 </script>
 
 <style>
