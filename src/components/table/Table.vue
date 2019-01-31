@@ -25,17 +25,18 @@
                 sortBy: 'age',
                 sortDesc: false,
                 fields: [
-                    { key: 'Action_name', sortable: true },
-                    { key: 'id', sortable: true },
-                    { key: 'Number', sortable: true },
-                    { key: 'Comment', sortable: true },
-                    { key: 'Date', sortable: true }
+                    { key: 'action_date', sortable: true, label: 'Action date' },
+                    { key: 'action_name', sortable: true, label: 'Action' },
+                    { key: 'project_ID', sortable: true, label: 'Project ID' },
+                    { key: 'client_name', sortable: true, label: 'Client date' },
+                    { key: 'comment', sortable: true, label: 'Comment' },
+                    { key: 'delete-btn', sortable: false, label: 'Delete' }
                 ],
                 items: [
-                    { Date: '22.03.18', Comment: "", Number: 40, Action_name: 'Click once', id: '2' },
-                    { Date: '22.03.18', Comment: "", Number: 21, Action_name: 'Hover', id: '3' },
-                    { Date: '22.03.18', Comment: "Clicked on sidebar", Number: 89, Action_name: 'Double click', id: '1' },
-                    { Date: '22.03.18', Comment: "Made it active", Number: 38, Action_name: 'Active', id: '4' },
+                    { action_date: '22.03.18', comment: "", client_name: 40, action_name: 'Click once', project_ID: '2' },
+                    { action_date: '22.03.18', comment: "", client_name: 21, action_name: 'Hover', project_ID: '3' },
+                    { action_date: '22.03.18', comment: "Clicked on sidebar", client_name: 89, action_name: 'Double click', project_ID: '1' },
+                    { action_date: '22.03.18', comment: "Made it active", client_name: 38, action_name: 'Active', project_ID: '4' },
                 ]
             }
         }

@@ -53,3 +53,12 @@ h1 {
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4), 0 1rem 2rem rgba(0, 0, 0, 0.3);
     justify-content: start;
 }
+.modal-content {
+    background: linear-gradient(to top, #1a7d61 0%, #25094b 100%);
+    text-align: center;
+    border-top: 0;
+}
+.close {
+    color: white;
+    text-shadow: none;
+}
