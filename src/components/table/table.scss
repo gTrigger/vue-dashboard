@@ -1,9 +1,11 @@
 .table {
-  padding: 0 2rem 0 2rem;
-  color: #524661;
-  width: 88.5rem;
+  padding: 2rem;
+  color: rgba(0, 0, 0, 0.7);
 }
 h1 {
   color: white;
-  padding: 2rem;
+}
+.table-top-actions {
+  color: white;
+  text-align: end;
 }

@@ -27,12 +27,12 @@ h1 {
 }
 .container-menu {
     height: 100vh;
-    margin-right: 2.5rem;
+    margin-right: 2rem;
     background: rgba(0, 0, 0, 0.4);
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4), 0 1rem 2rem rgba(0, 0, 0, 0.3);
 }
 .container-descr {
-    margin: 2rem 2.5rem 0 0;
+    margin: 2rem 2rem 0 0;
     height: 28rem;
     width: 37rem;
     background: rgba(0, 0, 0, 0.4);
@@ -46,9 +46,8 @@ h1 {
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4), 0 1rem 2rem rgba(0, 0, 0, 0.3);
 }
 .container-table {
-    margin: 2rem 2rem 2rem 0;
-    height: 27rem;
-    width: 93.5rem;
+    margin: 2rem 0 2rem 0;
+    width: 93rem;
     background: rgba(0, 0, 0, 0.4);
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4), 0 1rem 2rem rgba(0, 0, 0, 0.3);
     justify-content: start;
@@ -61,4 +60,7 @@ h1 {
 .close {
     color: white;
     text-shadow: none;
+}
+.hidden {
+    display: none;
 }

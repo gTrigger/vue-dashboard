@@ -12,7 +12,7 @@
 
       <div class="wrapper">
 
-        <AppModal ref="modalRef"></AppModal>
+        <app-welcome-modal ref="modalRef"></app-welcome-modal>
 
         <div class="d-flex">
 
@@ -40,7 +40,7 @@ import AppSidebar from '../components/sidebar/Sidebar.vue';
 import AppTable from '../components/table/Table.vue';
 import AppDescription from '../components/description/Description.vue';
 import AppGraph from "../components/graph/Graph.vue";
-import AppModal from "../components/modals/Modal.vue";
+import AppWelcomeModal from "../components/modals/WelcomeModal.vue";
 import Vue from 'vue';
 import bModal from 'bootstrap-vue/es/components/modal/modal';
 
@@ -81,7 +81,7 @@ export default {
       AppSidebar,
       AppTable,
       AppDescription,
-      AppModal
+      AppWelcomeModal
   },
   computed: {
       isCatVisible() {

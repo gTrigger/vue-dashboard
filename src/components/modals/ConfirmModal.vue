@@ -4,27 +4,37 @@
              size="lg"
              no-close-on-backdrop
              centered
-             title="Hey there!"
+             title="We need your confirmation"
     >
-        Welcome to my first vue-app. It's a little bit raw and simple, but i've tried to do my best!
+        <template>
+            Are you sure you want to delete this {{thing}}? You can't undo it later.
+        </template>
     </b-modal>
 </template>
 <script>
     export default {
         data () {
             return {
+                thing: ''
             }
         },
         methods: {
             hideModal () {
                 this.$refs.thisModalRef.hide()
             },
-            showModal () {
+            showModal (thing) {
+                switch(thing) {
+                    case 'table':
+                        this.thing="table";
+                        break;
+                    case 'row':
+                        this.thing="row";
+                        break;
+                }
                 this.$refs.thisModalRef.show()
             }
         }
     }
 </script>
-
 <style>
 </style>
