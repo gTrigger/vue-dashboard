@@ -15,7 +15,17 @@ import {faHome, faUser, faAddressCard, faCalendarAlt, faCogs,
 import {faFacebookSquare, faBehanceSquare, faTumblrSquare,
         faGithubSquare, faTwitter} from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import moment from 'moment';
 
+import Datepicker from 'vuejs-datepicker';
+Vue.component('datepicker', Datepicker);
+
+import VueLodash from 'vue-lodash';
+const options = { name: 'lodash' };
+Vue.use(VueLodash, options);
+
+
+Object.defineProperty(Vue.prototype, '$_', { value: _ });
 library.add(faHome, faUser, faAddressCard, faCalendarAlt, faCogs,
     faTable, faChartBar, faSearch, faTimes, faTrashAlt, faPlus,
     faAngleDoubleLeft, faAngleDoubleRight, faAngleLeft, faAngleRight,

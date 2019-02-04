@@ -9,3 +9,33 @@ h1 {
   color: white;
   text-align: end;
 }
+.add-new-row {
+  display: inline-flex;
+  background-color: white;
+  padding: 15px;
+  width: 89rem;
+
+  input {
+    width: 250px;
+    margin-left: 20px;
+  }
+
+  .vdp-datepicker {
+    width: 250px;
+    display: block;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+  .add-new-row-action {
+    margin-left: 1.775rem;
+    margin-top: 0.475rem;
+  }
+}

@@ -8,15 +8,40 @@
       &nbsp;
       <font-awesome-icon v-bind:icon="['fas', 'trash-alt']" @click=""/>
     </div>-->
-    <b-table :fields="addNewRowFields"
-    >
-      <template slot="action-date" slot-scope="data">
-        <input type="datetime-local"/>
+    <form class="add-new-row" >
+      <template>
+        <!--<datepicker placeholder="Input action date"
+                    clear-button
+                    input-class="datepicker-input"
+                    v-model="form.action_date"
+                    format="dd.MM.yyyy"
+                    @input="getDate"
+        />-->
+        <b-form-input type="date" placeholder="Input action date" v-model="form.action_date"/>
       </template>
-      <template slot="action_btn" slot-scope="data">
-        <font-awesome-icon v-bind:icon="['fas', 'plus']"/>
+
+      <template>
+        <b-form-input type="text" placeholder="Input action name" v-model="form.action_name"/>
       </template>
-    </b-table>
+
+      <template>
+        <b-form-input type="text" placeholder="Input project id" v-model="form.project_ID"/>
+      </template>
+
+      <template>
+        <b-form-input type="text" placeholder="Input client name" v-model="form.client_name"/>
+      </template>
+
+      <template>
+        <b-form-input type="text" placeholder="Input comment" v-model="form.comment"/>
+      </template>
+
+      <template>
+        <font-awesome-icon v-bind:icon="['fas', 'plus']" class="add-new-row-action" @click="submitNewRow"/>
+      </template>
+    </form>
+    <br>
+    <br>
     <b-table striped
              hover
              :sort-by.sync="sortBy"
@@ -25,7 +50,7 @@
              :fields="tableFields"
     >
       <template slot="action_btn" slot-scope="data">
-        <font-awesome-icon v-bind:icon="['fas', 'trash-alt']"/>
+        <font-awesome-icon v-bind:icon="['fas', 'trash-alt']" @click="deleteTableRow"/>
       </template>
     </b-table>
   </div>
@@ -35,8 +60,9 @@
     import Vue from 'vue';
     import bTable from 'bootstrap-vue/es/components/table/table';
     import 'vue-bootstrap-datetimepicker/dist/vue-bootstrap-datetimepicker.min';
-    import AppConfirmModal from '../modals/ConfirmModal';
+    import bFormInput from 'bootstrap-vue/es/components/form-input/form-input';
 
+    Vue.component('b-form-input', bFormInput);
     Vue.component('b-table', bTable);
 
     export default {
@@ -48,7 +74,7 @@
                     { key: 'action_date', sortable: true, label: 'Action date' },
                     { key: 'action_name', sortable: true, label: 'Action' },
                     { key: 'project_ID', sortable: true, label: 'Project ID' },
-                    { key: 'client_name', sortable: true, label: 'Client date' },
+                    { key: 'client_name', sortable: true, label: 'Client name' },
                     { key: 'comment', sortable: true, label: 'Comment' },
                     { key: 'action_btn', sortable: false, label: 'Action'}
                 ],
@@ -58,26 +84,47 @@
                     { action_date: '22.03.18', comment: "Clicked on sidebar", client_name: 89, action_name: 'Double click', project_ID: '1' },
                     { action_date: '22.03.18', comment: "Made it active", client_name: 38, action_name: 'Active', project_ID: '4' },
                 ],
-                addNewRowFields: [
-                    { key: 'action_date', sortable: true, label: 'Action date' },
-                    { key: 'action_name', sortable: true, label: 'Action' },
-                    { key: 'project_ID', sortable: true, label: 'Project ID' },
-                    { key: 'client_name', sortable: true, label: 'Client date' },
-                    { key: 'comment', sortable: true, label: 'Comment' },
-                    { key: 'action-btn', sortable: false, label: 'Action'}
-                ],
-                addNewRowItems: [
-                    { action_date: '', comment: '', client_name: '', action_name: '', project_ID: '' },
-                ]
+                form: {
+                    action_date: '',
+                    action_name: '',
+                    project_ID: '',
+                    client_name: '',
+                    comment: ''
+                }
             }
         },
         methods: {
-            deleteTableRow: function() {
+            deleteTableRow: function(index) {
+                let modifiedItemsArray = this.tableItems;
+                modifiedItemsArray.splice(index, 1);
+                this.$emit('update:items', modifiedItemsArray);
+            },
+            submitNewRow: function() {
+                let modifiedItemsArray = this.tableItems;
+                modifiedItemsArray.push({
+                    action_date: this.form.action_date,
+                    action_name: this.form.action_name,
+                    project_ID: this.form.project_ID,
+                    client_name: this.form.client_name,
+                    comment: this.form.comment
 
+                });
+                this.$emit('update:items', modifiedItemsArray);
+                this.form = {
+                    action_date: '',
+                    action_name: '',
+                    project_ID: '',
+                    client_name: '',
+                    comment: ''
+                };
+                console.log(modifiedItemsArray);
+                console.log(this.form.action_date);
+            },
+            getDate(value) {
+                this.newEvent.startDate = moment(value + ":07", moment.ISO_8601).format("x");
             }
         },
         components: {
-            AppConfirmModal
         }
     }
 </script>

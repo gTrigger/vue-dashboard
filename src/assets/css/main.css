@@ -64,3 +64,7 @@ h1 {
 .hidden {
     display: none;
 }
+.datepicker-input {
+    border: 0;
+    outline: none;
+}
